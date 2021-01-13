@@ -1,0 +1,69 @@
+<h4>Список сотрудников</h4>
+<div class="row" style="justify-content: center;">
+    <div class="col-12 m-2">
+        <span class="form-text text-muted">Поиск сотрудника по фамилии и имени:</span>
+        <input type="text" class="form-control" [(ngModel)]="searchStr" placeholder="Найду кого угодно">
+        <button type="button" class="btn btn-info mr-2 mt-2" (click)="sortId()">Фильтр по id</button>
+        <button type="button" class="btn btn-info mt-2" (click)="sortBth()">Фильтр по дате рождения</button>
+      </div>
+            <div class="card text-black bg-light mb-3 m-3" style="max-width: 18rem;" *ngFor="let person of persons | search: searchStr">
+                    <div class="card-header">ID:{{ person.id }}</div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ person.name }} {{person.surname}} {{ person.patronymic }}</h5>
+                      <p class="card-text">Телефон: {{ person.phone }}</p>
+                      <p class="card-text">Email: {{ person.email }}</p>
+                      <p class="card-text">Дата рождения: {{ person.birthday }}</p>
+                      <p class="card-text" *ngIf="person.department === 0">Отдел: IT</p>
+                      <p class="card-text" *ngIf="person.department === 1">Отдел: продаж</p>
+                      <p class="card-text" *ngIf="person.department === 2">Отдел: доставки</p>
+                      <p class="card-text" *ngIf="person.department === 3">Отдел: юридический</p>
+                    </div>
+                    <div class="col-6"><button type="button" class="btn btn-success m-2" (click)="OnEdit(person.id)">Редактировать</button></div>
+                    <div class="col-6"><button type="button" class="btn btn-danger m-2" (click)="OnDelete(person.id)">Удалить</button></div>  
+            </div>
+</div>
+<div class="mymodalout" *ngIf="check">
+    <div class="mymodal" >
+        <form [formGroup]="editPersonsForm">
+            <div class="form-group">
+                <label for="name" class="col-form-label">Имя:</label>
+                <input formControlName="name" type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="surname" class="col-form-label">Фамилие:</label>
+                <input formControlName="surname" type="text" class="form-control" id="surname" [(ngModel)]="surname" name="surname">
+            </div>
+            <div class="form-group">
+                <label for="otch" class="col-form-label">Отчество:</label>
+                <input formControlName="otch" type="text" class="form-control" id="otch" [(ngModel)]="otch" name="otch">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-form-label">Телефон:</label>
+                <input formControlName="phone" type="text" class="form-control" id="phone" [(ngModel)]="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-form-label">Email:</label>
+                <input formControlName="email" type="text" class="form-control" id="email" [(ngModel)]="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="bth" class="col-form-label">Дата рождения:</label>
+              <input formControlName="bth" type="date" class="form-control" id="bth" [(ngModel)]="bth" name="bth">
+            </div>
+            <div class="form-group">
+              <label for="department">Выбор отдела</label>
+              <select formControlName="department" class="form-control" id="department" [(ngModel)]="type" name="type">
+                <option [ngValue]="myDepartmentType.IT">IT отдел</option>
+                <option [ngValue]="myDepartmentType.sales">Отдел продаж</option>
+                <option [ngValue]="myDepartmentType.delivery">Отдел доставки</option>
+                <option [ngValue]="myDepartmentType.law">Юридический отдел</option>
+              </select>
+            </div>
+              </form>
+           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="editCheck()">Close</button>
+              <button type="button" [disabled]="editPersonsForm.invalid" class="btn btn-primary" (click)="saveChanges()">Save</button>
+            </div>
+</div>
+</div>
+

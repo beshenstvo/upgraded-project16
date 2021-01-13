@@ -1,0 +1,40 @@
+<div class="container">
+    <h4 class="mt-3">Добавление сотрудника</h4>
+    <form [formGroup]="personsForm">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Фамилие</label>
+              <input formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Gataullina">
+            </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput2">Имя</label>
+                    <input formControlName="surname" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Rufina">
+            </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput3">Отчество</label>
+                    <input formControlName="patronymic" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Rinatovna">
+            </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput4">Телефон</label>
+                    <input formControlName="phone" type="text" class="form-control" id="exampleFormControlInput4" placeholder="79163398114">
+            </div>
+            <div class="form-group">
+                    <label for="exampleFormControlInput5">Email</label>
+                    <input formControlName="email" type="email" class="form-control" id="exampleFormControlInput5" placeholder="example@gmail.com">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Выбор отдела</label>
+              <select formControlName="department" class="form-control" id="department" [(ngModel)]="type" name="type">
+                <option [ngValue]="myDepartmentType.IT">IT отдел</option>
+                <option [ngValue]="myDepartmentType.sales">Отдел продаж</option>
+                <option [ngValue]="myDepartmentType.delivery">Отдел доставки</option>
+                <option [ngValue]="myDepartmentType.law">Юридический отдел</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput6">Дата рождения&nbsp;</label>
+              <input type="date" formControlName="birthday">
+            </div>
+            <button [disabled]="personsForm.invalid" type="button" class="btn btn-dark" (click)="onAddPerson()">Добавить</button>
+          </form>
+    
+</div>
