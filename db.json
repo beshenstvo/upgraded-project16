@@ -1,0 +1,44 @@
+{
+  "persons": [
+    {
+      "name": "Ivan",
+      "surname": "ivanov",
+      "patronymic": "ivanovich",
+      "phone": 87311113,
+      "email": "ivanuk@gmail.com",
+      "birthday": "1665-10-11",
+      "department": 0,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "petr",
+      "surname": "Petrov",
+      "patronymic": "Petrovich",
+      "phone": 1111555,
+      "email": "petrovich@gmail.com",
+      "birthday": "1987-11-01",
+      "department": 1
+    },
+    {
+      "id": 3,
+      "name": "Rufina",
+      "surname": "Gataullina",
+      "patronymic": "Rinatovna",
+      "phone": 784888,
+      "email": "loliyyy@gmail.com",
+      "birthday": "2003-08-09",
+      "department": 2
+    },
+    {
+      "name": "Test",
+      "surname": "Test",
+      "patronymic": "Test",
+      "phone": "9987766",
+      "email": "some@mail.ru",
+      "birthday": "2021-01-31",
+      "department": 1,
+      "id": 4
+    }
+  ]
+}

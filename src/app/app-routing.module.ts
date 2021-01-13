@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: '',
     component: InfoComponent
+  },
+  {
+    path: 'persons/:id',
+    component: PersonsComponent
   }
 ];
 

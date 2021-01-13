@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonsService } from 'src/app/services/persons.service';
 import { TypeDepartmen } from 'src/app/models/persons.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add',
@@ -9,10 +10,13 @@ import { TypeDepartmen } from 'src/app/models/persons.model';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+  @Output() addPerson = new EventEmitter<any>();
+  
   myDepartmentType = TypeDepartmen;
   type:number = 0;
   personsForm!: FormGroup;
-  constructor(private personsService: PersonsService ) { }
+  constructor(private personsService: PersonsService,
+    private http: HttpClient ) { }
 
   ngOnInit(): void {
     this.personsForm = new FormGroup({
@@ -26,8 +30,12 @@ export class AddComponent implements OnInit {
     })
   }
   onAddPerson(){
-    this.personsService.persons.push(this.personsForm.value);
-    this.personsService.persons[this.personsService.persons.length-1].id = this.personsService.persons.length
+    // this.personsService.persons.push(this.personsForm.value);
+    // this.personsService.persons[this.personsService.persons.length-1].id = this.personsService.persons.length
+    
+    this.http.post('http://localhost:3000/persons', this.personsForm.value).subscribe(data => {
+      console.log(data);
+    });
     this.personsForm.reset();
   }
 

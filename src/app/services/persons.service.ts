@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Persons } from '../models/persons.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,8 @@ export class PersonsService {
     department: 2
   }
 ];
-  constructor() { }
+  constructor(private http: HttpClient) {
+   }
+
+
 }
