@@ -1,7 +1,7 @@
 {
   "persons": [
     {
-      "name": "Ivan",
+      "name": "IvanS",
       "surname": "ivanov",
       "patronymic": "ivanovich",
       "phone": 87311113,
@@ -34,10 +34,10 @@
       "name": "Test",
       "surname": "Test",
       "patronymic": "Test",
-      "phone": "9987766",
-      "email": "some@mail.ru",
-      "birthday": "2021-01-31",
-      "department": 1,
+      "phone": 111666677,
+      "email": "test@gmail.com",
+      "birthday": "1567-10-11",
+      "department": 3,
       "id": 4
     }
   ]

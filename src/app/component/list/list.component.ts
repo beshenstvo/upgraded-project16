@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SortPipe } from 'src/app/pipes/sort.pipe';
 import { SortBthPipe } from 'src/app/pipes/sort-bth.pipe';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -29,7 +30,8 @@ type: number = 0;
 constructor(private personsService: PersonsService,
   private pipeSort: SortPipe,
   private pipeSortBth: SortBthPipe, 
-  private http: HttpClient) {}
+  private http: HttpClient,
+  private router: Router) {}
 
   ngOnInit(): void {
     this.editPersonsForm = new FormGroup({
@@ -48,10 +50,13 @@ constructor(private personsService: PersonsService,
 
   OnDelete(id: any){
     //this.personsService.persons.splice(id-1);
-    return this.http.delete(`http://localhost:3000/persons/`+id).subscribe(data => {
+    this.http.delete(`http://localhost:3000/persons/`+id).subscribe(data => {
       console.log(data);
     });
     console.log(id);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/persons']);
   }
   OnEdit(id: any){
     (!this.check)?(this.check = true):(this.check = false);
@@ -82,6 +87,9 @@ constructor(private personsService: PersonsService,
     this.http.put('http://localhost:3000/persons/' + this.id, this.editPersonsForm.value).subscribe(data => {
       console.log(data);
     });
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/persons']);
 
   }
   sortBth(){

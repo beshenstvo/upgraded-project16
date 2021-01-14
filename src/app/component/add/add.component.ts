@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonsService } from 'src/app/services/persons.service';
 import { TypeDepartmen } from 'src/app/models/persons.model';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +17,8 @@ export class AddComponent implements OnInit {
   type:number = 0;
   personsForm!: FormGroup;
   constructor(private personsService: PersonsService,
-    private http: HttpClient ) { }
+    private http: HttpClient,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.personsForm = new FormGroup({
@@ -37,6 +39,9 @@ export class AddComponent implements OnInit {
       console.log(data);
     });
     this.personsForm.reset();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/persons']);
   }
 
 }
